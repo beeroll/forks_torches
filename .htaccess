@@ -1,0 +1,19 @@
+DirectoryIndex index.php
+RewriteEngine on
+
+# thumbs
+RewriteRule ^thumbs/(.+\.jpg)$ image.php?filename=thumbs/$1
+
+RewriteRule ^/css/([^/]+)$ css/$1
+RewriteRule ^.+/i/([^/]+)$ i/$1
+RewriteRule ^.+/api/([^/]+)$ api/$1
+RewriteRule ^.+/pic/p2p/([^/]+)$ pic/p2p/$1
+RewriteCond %{REQUEST_FILENAME} !assets/
+RewriteRule ^.+?/js/(.+)$ js/$1
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php
+RewriteRule . index.php
